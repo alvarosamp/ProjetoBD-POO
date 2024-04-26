@@ -1,7 +1,8 @@
-drop database if exists integracão;
+drop database if exists integracao;
 create database integracao;
 
 use integracao;
+select * from Consultas_medicas;
 
 create table Medidas_Biométricas(
 	id int not null auto_increment primary key,
@@ -22,7 +23,6 @@ create table Usuarios(
 create table Consultas_medicas(
 	id int not null auto_increment primary key,
     id_usuario int,
-    date date,
     motivo text,
     resultado text
 );
