@@ -5,14 +5,14 @@ import java.sql.Date;
 public class Consultas_medicas {
     private int id;
     private int id_usuario;
-    private Date date;
+
     private String motivo;
     private String resultado;
 
-    public Consultas_medicas(int id, int id_usuario, Date date, String motivo, String resultado) {
+    public Consultas_medicas(int id, int id_usuario,  String motivo, String resultado) {
         this.id = id;
         this.id_usuario = id_usuario;
-        this.date = date;
+
         this.motivo = motivo;
         this.resultado = resultado;
     }
@@ -31,14 +31,6 @@ public class Consultas_medicas {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
-    }
-
-    public date getDate() {
-        return date;
-    }
-
-    public void setDate(date date) {
-        this.date = date;
     }
 
     public String getMotivo() {
