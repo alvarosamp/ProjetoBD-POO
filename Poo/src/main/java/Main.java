@@ -8,15 +8,14 @@ public class Main {
 
             DAOConsultas_Medicas consultaDAO = new DAOConsultas_Medicas();
 
-            Consultas_medicas c1 = new Consultas_medicas(2178,3212,"27/09/2003","Dengue","Negativo");
+            Consultas_medicas c1 = new Consultas_medicas(2178,3212,"Dengue","Negativo");
 
-            consultaDAO.insertAluno(c1);
+            consultaDAO.insertConsulta(c1);
 
-            consultaDAO.selectAluno();
 
             consultaDAO.updateMotivo(2178, "Dor de cabeça");
 
-            consultaDAO.selectAluno();
+            consultaDAO.selectConsultas_medicas();
 
             consultaDAO.deleteConsulta(2178);
 
