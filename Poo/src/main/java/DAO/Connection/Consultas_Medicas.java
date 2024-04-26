@@ -13,15 +13,14 @@ public class DAOConsultas_Medicas extends Dao {
 
 
     public boolean insertConsulta(Consultas_medicas consulta) {
-        this.connectToDB();
-        String sql = "INSERT INTO Consultas_medicas (id_usuario, date, motivo, resultado) VALUES (?, ?, ?, ?)";
+        this.connectToDB(); // Move the call here
+        String sql = "INSERT INTO Consultas_medicas (id_usuario, motivo, resultado) VALUES (?, ?, ?)";
 
         try {
             pst = con.prepareStatement(sql);
             this.pst.setInt(1, consulta.getId_usuario());
-            this.pst.setDate(2, consulta.getDate());
-            this.pst.setString(3, consulta.getMotivo());
-            this.pst.setString(4, consulta.getResultado());
+            this.pst.setString(2, consulta.getMotivo());
+            this.pst.setString(3, consulta.getResultado());
             this.pst.execute();
             this.sucesso = true;
         } catch (SQLException exc) {
@@ -29,8 +28,12 @@ public class DAOConsultas_Medicas extends Dao {
             this.sucesso = false;
         } finally {
             try {
-                this.con.close();
-                this.pst.close();
+                if (con != null) { // Check if connection exists before closing
+                    this.con.close();
+                }
+                if (pst != null) { // Check if statement exists before closing
+                    this.pst.close();
+                }
             } catch (SQLException exc) {
                 System.out.println("Erro: " + exc.getMessage());
             }
@@ -103,7 +106,6 @@ public class DAOConsultas_Medicas extends Dao {
                 Consultas_medicas ConsultaAux = new Consultas_medicas(
                         rs.getInt("id"),
                         rs.getInt("id_usuario"),
-                        rs.getDate("date"),
                         rs.getString("motivo"),
                         rs.getString("resultado")
                 );
